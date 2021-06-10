@@ -1,58 +1,36 @@
-// ********** set date ************
-// select span
-const date = (document.getElementById(
-  "date"
-).innerHTML = new Date().getFullYear());
+'use strict';
 
-// ********** nav toggle ************
-// select button and links
-const navBtn = document.getElementById("nav-toggle");
-const links = document.getElementById("nav-links");
-// add event listener
-navBtn.addEventListener("click", () => {
-  links.classList.toggle("show-links");
-});
-// ********** navbar fixed ************
-const navbar = document.querySelector(".navbar");
+//Variables
+const tabs = document.querySelectorAll(".services__tab");
+const tabContainer = document.querySelector(".services__tab-container");
+const tabscontent = document.querySelectorAll(".services__content");
 
-window.addEventListener("scroll", () => {
-  if (window.pageYOffset > 62) {
-    navbar.classList.add("fixed");
-  } else {
-    navbar.classList.remove("fixed");
-  }
-});
 
-// ********** smooth scroll ************
-// select links
-const scrollLinks = document.querySelectorAll(".scroll-link");
-scrollLinks.forEach(link => {
-  link.addEventListener("click", e => {
-    // prevent default
-    e.preventDefault();
-    links.classList.remove("show-links");
+/////////////////////////
+//Modal
 
-    const id = e.target.getAttribute("href").slice(1);
-    const element = document.getElementById(id);
-    //
-    let position;
-    if (navbar.classList.contains("fixed")) {
-      position = element.offsetTop - 62;
-    } else {
-      position = element.offsetTop - 124;
-    }
-    if (window.innerWidth < 992) {
-      if (navbar.classList.contains("fixed")) {
-        position = element.offsetTop - 62;
-      } else {
-        position = element.offsetTop - 332 - 62;
-      }
-    }
-    window.scrollTo({
-      left: 0,
-      // top: element.offsetTop,
-      top: position,
-      behavior: "smooth"
-    });
-  });
+
+
+
+/////////////////////////
+// TAB Component
+//We Can add for loop to buttons but if there are
+//100 tabs the the speed will become very Slow.
+tabContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.services__tab');
+
+  // Guard clause
+  if (!clicked) return;
+
+  // Remove active classes for tabs and content.
+  tabs.forEach(t => t.classList.remove('services__tab--active'));
+  tabscontent.forEach(c => c.classList.remove('services__content--active'));
+
+  // Activate tab
+  clicked.classList.add('services__tab--active');
+
+  // Activate content area
+  document
+    .querySelector(`.services__content--${clicked.dataset.tab}`)
+    .classList.add('services__content--active');
 });

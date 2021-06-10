@@ -91,7 +91,7 @@ img:not(.navbar__logo) {
     letter-spacing: 0.4rem;
     @media only screen and (max-width: 800px) {
       font-size: 4rem;
-      margin-bottom: 0rem;
+      margin-bottom: 1rem;
     }
   }
   &__passage {
@@ -151,7 +151,89 @@ img:not(.navbar__logo) {
   }
 }
 
-/*************** services section ***************/
+////////////////////////////////////
+/*Services Section*/
+.services {
+  &__parent {
+    background-color: #ffffff;
+    width: 70vw;
+    max-width: 116rem;
+    margin: 7rem auto;
+  }
+  &__tab-container {
+    display: flex;
+    justify-content: center;
+  }
+  &__tab {
+    margin-right: 2.5rem;
+    transform: translateY(-50%);
+  }
+  &__tab--1 {
+    background-color: #003f77;
+    border: 2px solid #003f77;
+  }
+  &__tab--2 {
+    background-color: #13bce6;
+    border: 2px solid #13bce6;
+  }
+  &__tab--3 {
+    background-color: #003f77;
+    border: 2px solid #003f77;
+  }
+  &__tab--1:hover,
+  &__tab--3:hover {
+    background-color: #003f77;
+    border: 2px solid #003f77;
+    color: #ffffff;
+  }
+  &__tab--2:hover {
+    background-color: #13bce6;
+    border: 2px solid #13bce6;
+    color: #ffffff;
+  }
+
+  &__tab--active {
+    transform: translateY(-66%);
+  }
+
+  &__content {
+    display: none;
+
+    /* JUST PRESENTATIONAL */
+    font-size: 1.6rem;
+    padding: 3.5rem 7rem 6.5rem 7rem;
+  }
+
+  &__content--active {
+    display: flex;
+  }
+
+  &__icon {
+    flex: 0 0 7rem;
+    margin-right: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%;
+  }
+
+  &__icon svg {
+    height: 2.75rem;
+    width: 2.75rem;
+  }
+
+  &__icon--1,
+  &__icon--3 {
+    background-color: #c4eaf3;
+    fill: #003f77;
+  }
+  &__icon--2 {
+    background-color: #c4eaf3;
+    fill: #13bce6;
+  }
+}
 
 ////////////////////////////////////
 /*Tours Section*/
