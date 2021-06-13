@@ -1,6 +1,13 @@
 ////////////////////////////////////
 /*Global Styling*/
 //For Images
+.about__photo {
+  transition: filter 0.5s;
+}
+
+.lazy-img {
+  filter: blur(28px);
+}
 img:not(.navbar__logo) {
   width: 100%;
   display: block;
@@ -9,6 +16,14 @@ img:not(.navbar__logo) {
 /* For Sections */
 .section {
   padding: 8rem 0;
+  // When we remove the hidden sections, then remove (opacity: 0) in 1s and remove translaY in 1s.
+  transition: transform 1s, opacity 1s;
+}
+
+/* For Sections */
+.hidden-Sections {
+  opacity: 0;
+  transform: translateY(8rem);
 }
 
 /* For Title */
@@ -32,6 +47,18 @@ img:not(.navbar__logo) {
 .parent {
   width: 100%;
   background-color: var(--offWhite);
+  z-index: 100;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--mainGrey);
+  transition: var(--mainTransition);
+  box-shadow: var(--lightShadow);
+  z-index: 1;
 }
 
 //navbar
@@ -49,6 +76,7 @@ img:not(.navbar__logo) {
   display: flex;
   align-items: center;
   list-style: none;
+  // Implement Mobile Menu in future.
   @media only screen and (max-width: 850px) {
     display: none;
   }
@@ -68,7 +96,7 @@ img:not(.navbar__logo) {
 .header {
   height: 100vh;
   background-image: linear-gradient(rgba(63, 208, 212, 0.7), rgba(0, 0, 0, 0.7)),
-    url("../images/main.jpeg");
+    url("../images/5.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -159,6 +187,9 @@ img:not(.navbar__logo) {
     width: 70vw;
     max-width: 116rem;
     margin: 7rem auto;
+    @media only screen and (max-width: 1082px) {
+      width: 90%;
+    }
   }
   &__tab-container {
     display: flex;
@@ -167,6 +198,12 @@ img:not(.navbar__logo) {
   &__tab {
     margin-right: 2.5rem;
     transform: translateY(-50%);
+    @media only screen and (max-width: 1082px) {
+      font-size: 1.4rem;
+      padding: 0.5rem 0.7rem;
+      letter-spacing: 0.1rem;
+      margin-right: 1.5rem;
+    }
   }
   &__tab--1 {
     background-color: #003f77;
@@ -202,10 +239,16 @@ img:not(.navbar__logo) {
     /* JUST PRESENTATIONAL */
     font-size: 1.6rem;
     padding: 3.5rem 7rem 6.5rem 7rem;
+    @media only screen and (max-width: 1082px) {
+      padding: 3rem 1rem 4rem 2rem;
+    }
   }
 
   &__content--active {
     display: flex;
+    @media only screen and (max-width: 1082px) {
+      flex-wrap: wrap;
+    }
   }
 
   &__icon {
@@ -217,6 +260,9 @@ img:not(.navbar__logo) {
     height: 7rem;
     width: 7rem;
     border-radius: 50%;
+    @media only screen and (max-width: 1082px) {
+      margin-bottom: 2rem;
+    }
   }
 
   &__icon svg {
@@ -281,30 +327,80 @@ img:not(.navbar__logo) {
 
 ////////////////////////////////////
 /*Gallery Section*/
-.gallery {
-  background: #ececec;
-  overflow: hidden;
-  width: 100%;
-  &__div {
-    display: flex;
-    float: left;
-    width: 25%;
-    margin: 0;
-    overflow: hidden;
-  }
+.gallery__section {
+  background-image: url("/images/Gallery-bk.jpg");
+}
 
-  &__img {
-    display: block;
-    width: 100%;
-    height: auto;
-    transform: scale(1.15);
-    transition: transform 0.5s, opacity 0.5s;
-    &:hover {
-      transform: scale(1.03);
-    }
+.gallery__title {
+  color: #ffffff;
+}
+
+/* SLIDER */
+.slider {
+  position: relative;
+  width: 70vw;
+  max-width: 90rem;
+  height: 39rem;
+  margin: 3rem auto;
+
+  /* IN THE END */
+  overflow: hidden;
+  @media only screen and (max-width: 850px) {
+    width: 90vw;
   }
-  &__title {
-    margin: 4rem 0rem;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* THIS creates the animation! */
+  transition: transform 1s;
+}
+
+.slide > img {
+  /* Only for images that have different size than slide */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slider__btn {
+  outline: none;
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+
+  border: none;
+  background: rgba(255, 255, 255, 0.7);
+  font-family: inherit;
+  color: #333;
+  border-radius: 50%;
+  height: 5.5rem;
+  width: 5.5rem;
+  font-size: 3.25rem;
+  cursor: pointer;
+}
+
+.slider__btn--left {
+  left: 6%;
+  transform: translate(-50%, -50%);
+  @media only screen and (max-width: 850px) {
+    left: 10%;
+  }
+}
+
+.slider__btn--right {
+  right: 6%;
+  transform: translate(50%, -50%);
+  @media only screen and (max-width: 850px) {
+    right: 10%;
   }
 }
 
@@ -380,4 +476,92 @@ img:not(.navbar__logo) {
     text-transform: capitalize;
     letter-spacing: var(--mainSpacing);
   }
+}
+
+/* MODAL WINDOW */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  max-width: 60rem;
+  background-color: #f3f3f3;
+  padding: 5rem 6rem;
+  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.5s;
+  @media only screen and (max-width: 850px) {
+    width: 80vw;
+    padding: 2rem 2rem;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  transition: all 0.5s;
+}
+
+.modal__header {
+  font-size: 3.25rem;
+  margin-bottom: 4.5rem;
+  line-height: 1.5;
+}
+
+.modal__form {
+  margin: 0 3rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  gap: 2.5rem;
+  @media only screen and (max-width: 850px) {
+    gap: 1rem;
+    margin: 0 0rem;
+  }
+}
+
+.modal__form label {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+
+.modal__form input {
+  font-size: 1.7rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  @media only screen and (max-width: 850px) {
+    font-size: 1rem;
+    padding: 1rem 1rem;
+  }
+}
+
+.modal__form button {
+  grid-column: 1 / span 2;
+  justify-self: center;
+  margin-top: 1rem;
+}
+
+.btn--close-modal {
+  font-family: inherit;
+  color: inherit;
+  position: absolute;
+  top: 0.5rem;
+  right: 2rem;
+  font-size: 4rem;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
 }

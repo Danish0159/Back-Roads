@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Backroads || Tour Company</title>
   <link rel="stylesheet" href="/css/styles.css" />
+  <!-- JavaScript -->
+  <script defer src="/js/app.js"></script>
 </head>
 
 <body>
@@ -23,7 +25,7 @@
           <li class="navigation__item"><a class="navigation__link" href="#">Featured</a></li>
           <li class="navigation__item"><a class="navigation__link" href="#">Gallery</a></li>
         </ul>
-        <a href="#" class="btn-primary btn-small">Sign Up</a>
+        <a href="#" class="btn-primary btn-small btn-nav btn--show-modal">Sign Up</a>
       </nav>
     </div>
 
@@ -40,14 +42,13 @@
 
   <!-- Services Section  -->
   <section class="section services">
-    <h2 class="title">OUR<span class="subtitle"> SERVICES</span></h2>
+    <h2 class="title">our <span class="subtitle">services</span></h2>
     <div class="services__parent">
 
       <div class="services__tab-container">
-        <a class="btn-primary btn-small services__tab services__tab--1 services__tab--active" data-tab="1">Saving
-          Money</a>
-        <a class="btn-primary btn-small services__tab services__tab--2" data-tab="2">Endless Hiking</a>
-        <a class="btn-primary btn-small services__tab services__tab--3" data-tab="3">AMAZING COMFORT</a>
+        <a class="btn-primary btn-small services__tab services__tab--1 services__tab--active" data-tab="1">Saving</a>
+        <a class="btn-primary btn-small services__tab services__tab--2" data-tab="2">Hiking</a>
+        <a class="btn-primary btn-small services__tab services__tab--3" data-tab="3">COMFORT</a>
       </div>
 
       <!-- First Service  -->
@@ -98,15 +99,10 @@
           </p>
         </div>
       </div>
-
-
-
-
-
     </div>
-
-
   </section>
+
+
 
   <!-- About Section -->
   <section class="section about" id="about">
@@ -116,7 +112,8 @@
     <div class="about__center">
       <!-- about img wrapper-->
       <div class="about__img">
-        <img src="/images/about.jpeg" class="about__photo" alt="awesome beach" />
+        <img src="/images/lazy-about.jpeg" data-src="/images/about.jpeg" class="about__photo lazy-img"
+          alt="awesome beach" />
       </div>
 
       <!-- About Info -->
@@ -132,8 +129,29 @@
           quisquam harum nam cumque temporibus explicabo dolorum sapiente odio
           unde dolor?
         </p>
-        <a href="#" class="btn-primary">read more</a>
+        <a href="#" class="btn-primary btn--show-modal">Sign Up</a>
       </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="section gallery__section">
+    <!-- Gallery Title  -->
+    <h2 class="title gallery__title">our <span class="subtitle ">gallery</span></h2>
+
+    <!-- Gallery Slider  -->
+    <div class="slider">
+      <div class="slide slide--1">
+        <img class="slide__img" src="/images/1.jpg" alt="image-1">
+      </div>
+      <div class="slide slide--2">
+        <img class="slide__img" src="/images/2.jpg" alt="image-2">
+      </div>
+      <div class="slide slide--3">
+        <img class="slide__img " src="/images/3.jpg" alt="image-3">
+      </div>
+      <button class="slider__btn slider__btn--left">&larr;</button>
+      <button class="slider__btn slider__btn--right">&rarr;</button>
     </div>
   </section>
 
@@ -150,7 +168,7 @@
 
         <!-- Tour1 Image  -->
         <div class="tour__imgdiv">
-          <img class="tour__img" src="/images/tour-1.jpeg" alt="">
+          <img class="tour__img" src="/images/t1.webp" alt="">
         </div>
 
         <!-- Tour1 Date -->
@@ -166,7 +184,7 @@
       <div class="tour">
         <!-- Tour2 Image  -->
         <div class="tour__imgdiv">
-          <img class="tour__img" src="/images/tour-2.jpeg" alt="">
+          <img class="tour__img" src="/images/t2.webp" alt="">
         </div>
 
         <!-- Tour2 Date -->
@@ -182,7 +200,7 @@
       <div class="tour">
         <!-- Tour3 Image  -->
         <div class="tour__imgdiv">
-          <img class="tour__img" src="/images/tour-3.jpeg" alt="">
+          <img class="tour__img" src="/images/1.jpg" alt="">
         </div>
 
         <!-- Tour3 Date -->
@@ -195,34 +213,6 @@
       </div>
   </section>
 
-  <!-- Gallery Section -->
-  <section class="gallery">
-    <h2 class="title gallery__title">our <span class="subtitle ">gallery</span></h2>
-    <div class="gallery__div">
-      <img class="gallery__img" src="/images/tour-1.jpeg" alt="image-1">
-    </div>
-    <div class="gallery__div">
-      <img class="gallery__img" src="/images/tour-2.jpeg" alt="image-2">
-    </div>
-    <div class="gallery__div">
-      <img class="gallery__img" src="/images/tour-3.jpeg" alt="image-3">
-    </div>
-    <div class="gallery__div">
-      <img class="gallery__img" src="/images/tour-4.jpeg" alt="image-4">
-    </div>
-    <div class="gallery__div">
-      <img class="gallery__img" src="/images/tour-5.jpeg" alt="image-5">
-    </div>
-    <div class="gallery__div">
-      <img class="gallery__img" src="/images/tour-6.jpeg" alt="image-6">
-    </div>
-    <div class="gallery__div">
-      <img class="gallery__img" src="/images/tour-1.jpeg" alt="image-7">
-    </div>
-    <div class="gallery__div">
-      <img class="gallery__img" src="/images/tour-2.jpeg" alt="image-8">
-    </div>
-  </section>
 
   <!-- Contact Section -->
   <section class="deals section" id="deals">
@@ -255,8 +245,24 @@
     </p>
   </footer>
 
-  <!-- JavaScript -->
-  <script src="/js/app.js"></script>
+  <div class="modal hidden">
+    <button class="btn--close-modal">&times;</button>
+    <h2 class="modal__header">
+      Sign Up
+    </h2>
+    <form class="modal__form">
+      <label>First Name</label>
+      <input type="text" />
+      <label>Last Name</label>
+      <input type="text" />
+      <label>Email Address</label>
+      <input type="email" />
+      <button class="btn-primary btn-small">Next step &rarr;</button>
+    </form>
+  </div>
+  <div class="overlay hidden"></div>
+
+
 </body>
 
 </html>

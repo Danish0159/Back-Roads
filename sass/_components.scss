@@ -28,3 +28,9 @@
 .btn-small {
   padding: 1rem 1.6rem;
 }
+
+@media only screen and (max-width: 850px) {
+  .btn-nav {
+    padding: 0.7rem 1rem;
+  }
+}
